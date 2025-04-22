@@ -66,8 +66,7 @@ public class UpdateHandler extends CommandHandler<UpdateCommand> {
                 try {
                     collectionManager.updateById(updateId, command.getWorkerDTO(), command.getUser().getUserName());
                 } catch (SQLException e) {
-                    System.err.println("Обновление не удалось реализовать. Проверьте конфигурацию БД.");
-                    return new ResponseWithMessage(StatusCode._500_SERVER_ERROR, "Элемент не был обновлен.");
+                    return new ResponseWithMessage(StatusCode._500_SERVER_ERROR, "Обновление не удалось реализовать. Проверьте конфигурацию БД.");
                 } catch(NotOwnerException e) {
                     return new ResponseWithMessage(StatusCode._400_CLIENT_ERROR, "Вы не являетесь создателем работника с id = " + updateId + ".");
                 }

@@ -60,7 +60,7 @@ public class RemoveByIdHandler extends CommandHandler<RemoveByIdCommand> {
                 try {
                     collectionManager.removeById(findId, command.getUser().getUserName());
                 } catch (SQLException e) {
-                    throw new RuntimeException(e);
+                    return new ResponseWithMessage(StatusCode._500_SERVER_ERROR, "Удаление не удалось реализовать. Проверьте конфигурацию БД.");
                 }catch (NotOwnerException e){
                     return new ResponseWithMessage(StatusCode._400_CLIENT_ERROR, "Вы не являетесь создателем работника с id = " + findId + ".");
                 }
