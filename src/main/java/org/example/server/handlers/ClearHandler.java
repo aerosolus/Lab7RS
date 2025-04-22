@@ -33,7 +33,7 @@ public class ClearHandler extends CommandHandler<ClearCommand> {
         try {
             collectionManager.clearCollection(command.getUser().getUserName());
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            return new ResponseWithMessage(StatusCode._500_SERVER_ERROR, "Очищение не удалось реализовать. Проверьте конфигурацию БД.");
         }
         return new ResponseWithMessage(StatusCode._200_SUCCESS_, "Коллекция очищена.");
 

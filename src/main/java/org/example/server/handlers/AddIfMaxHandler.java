@@ -53,7 +53,7 @@ public class AddIfMaxHandler extends CommandHandler<AddIfMaxCommand> {
                 collectionManager.sort(workerComparator);
                 return new ResponseWithMessage(StatusCode._200_SUCCESS_, "Элемент был добавлен в коллекцию.");
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                return new ResponseWithMessage(StatusCode._500_SERVER_ERROR, "Добавление не удалось реализовать. Проверьте конфигурацию БД.");
             }
         } else {
             return new ResponseWithMessage(StatusCode._400_CLIENT_ERROR, "Заданный объект меньше наибольшего элемента коллекции.");
