@@ -60,8 +60,10 @@ public class Server {
             initServerAppContainer();
             RequestHandler requestHandler = new RequestHandler(ServerApplicationContainer.getInstance().getCommandManager(), LOGGER);
             TCPServer server = new TCPServer(ServerApplicationContainer.getInstance().getCommandManager(), requestHandler, LOGGER);
+            ServerTerminal serverTerminal = new ServerTerminal(); //Консоль сервера на основе Thread
             try {
                 LOGGER.info("Сервер запущен.");
+                serverTerminal.start();
                 server.openConnection();
                 server.run();
             } catch (IOException e) {
